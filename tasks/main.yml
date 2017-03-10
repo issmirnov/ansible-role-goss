@@ -5,8 +5,17 @@
   tags:
     - goss
 
-- name: upload goss test
+- name: upload goss test file
   template: src={{ goss_tmpl }}  dest={{ goss_file }}
+  when: goss_tmpl is defined and goss_tmpl is not none
+  tags:
+    - goss
+
+- name: write goss test file
+  copy:
+    content: "{{ goss_payload | to_nice_yaml(indent=2) }}"
+    dest: "{{ goss_file }}"
+  when: goss_payload is defined and goss_payload is not none
   tags:
     - goss
 
