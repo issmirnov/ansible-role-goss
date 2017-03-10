@@ -1,0 +1,2 @@
+goss_file: ~/goss.yaml
+goss_tmpl: goss.yaml.j2

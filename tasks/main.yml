@@ -1,0 +1,17 @@
+- name: install goss.
+  shell: curl -fsSL https://goss.rocks/install | sh
+  args:
+    creates: /usr/local/bin/goss
+  tags:
+    - goss
+
+- name: upload goss test
+  template: src={{ goss_tmpl }}  dest={{ goss_file }}
+  tags:
+    - goss
+
+- name: test goss file
+  goss:
+    path: "{{ goss_file }}"
+  tags:
+    - goss
