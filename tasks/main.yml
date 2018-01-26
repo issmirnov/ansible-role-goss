@@ -1,3 +1,9 @@
+- name: install curl, abort playbook when fails
+  package:
+    name: curl
+    state: present
+  tags:
+    - goss
 - name: install goss.
   shell: curl -fsSL https://goss.rocks/install | sh
   args:
