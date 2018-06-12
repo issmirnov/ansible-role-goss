@@ -4,10 +4,12 @@
     state: present
   tags:
     - goss
+    
 - name: install goss.
   shell: curl -fsSL https://goss.rocks/install | sh
   args:
     creates: /usr/local/bin/goss
+  warn: False  
   tags:
     - goss
 
