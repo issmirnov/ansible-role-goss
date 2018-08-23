@@ -1,19 +1,18 @@
-- name: install curl, abort playbook when fails
+- name: download goss.
   become: yes
-  package:
-    name: curl
-    state: present
+  uri:
+    url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-{{ arch_map[ansible_architecture] }}"
+    dest: "{{ goss_binary }}"
+    status_code:
+      - 200
+      - 304
   tags:
     - goss
-    
-- name: install goss.
-  become: yes
-  shell: curl -fsSL https://goss.rocks/install | sh
-  args:
-    creates: /usr/local/bin/goss
-  warn: False  
-  tags:
-    - goss
+
+- name: enable executable permissions
+  file:
+    path: "{{ goss_binary }}"
+    mode: 0755
 
 - name: upload goss test file
   template: src={{ goss_tmpl }}  dest={{ goss_file }}
@@ -32,5 +31,6 @@
 - name: test goss file
   goss:
     path: "{{ goss_file }}"
+    goss_path: "{{ goss_binary }}"
   tags:
     - goss

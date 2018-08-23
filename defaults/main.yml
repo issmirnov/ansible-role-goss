@@ -1,3 +1,14 @@
 goss_file: ~/goss.yaml
 goss_tmpl:
 goss_payload:
+
+# Optional: Override desired goss version
+goss_version: v0.3.6
+
+# Internal variable: architecture to github release map
+arch_map:
+  armv7l: arm7
+  x86_64: amd64
+  i386: 386
+
+goss_binary: /usr/local/bin/goss
