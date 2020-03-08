@@ -19,6 +19,5 @@ driver, which must be installed to ansible's library path.
         zsh:
           installed: false
   roles:
-    - ansible-role-goss
-
+    - issmirnov.goss
 ```

@@ -2,3 +2,4 @@ galaxy_info:
   author: Ivan Smirnov
   description: Runs goss validator
   min_ansible_version: 2.2
+  role_name: goss
