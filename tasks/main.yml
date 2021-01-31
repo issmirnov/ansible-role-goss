@@ -3,16 +3,17 @@
   uri:
     url: "https://github.com/aelsabbahy/goss/releases/download/{{ goss_version }}/goss-linux-{{ arch_map[ansible_architecture] }}"
     dest: "{{ goss_binary }}"
+    mode: '755'
     status_code:
       - 200
       - 304
   tags:
     - goss
 
-- name: enable executable permissions
-  file:
-    path: "{{ goss_binary }}"
-    mode: 0755
+# - name: enable executable permissions
+#   file:
+#     path: "{{ goss_binary }}"
+#     mode: 0755
 
 - name: upload goss test file
   template: src={{ goss_tmpl }}  dest={{ goss_file }}
